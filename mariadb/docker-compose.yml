@@ -1,0 +1,21 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      - MARIADB_ROOT_PASSWORD=__59PASSWORD59__motdepasse
+    volumes:
+      - type: bind      
+        source: ./data
+        target: /var/lib/mysql
+    ports:
+      - 3309:3306
+  
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8085:8080

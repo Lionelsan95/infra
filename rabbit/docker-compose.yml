@@ -1,0 +1,17 @@
+version: '3.9'
+
+networks:
+  local-server:
+    driver: bridge
+
+services:
+  rabbit:
+    container_name: 'rabbit-docker'
+    image: 'rabbitmq:alpine'
+    ports:
+      - 
+    volumes:
+      - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+    environment:
+      - RABBITMQ_DEFAULT_USER='lio_rabbit_user'
+      - RABBITMQ_DEFAULT_PASS='5TvqhyfoQjwJbGQsrj85'

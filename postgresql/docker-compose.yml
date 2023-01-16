@@ -1,0 +1,26 @@
+version: '2'
+
+networks:
+  local-server:
+    driver: bridge
+
+services:
+  postgresql:
+    container_name: postgresql-docker
+    image: docker.io/bitnami/postgresql:14
+    ports:
+      - '5433:5432'
+    networks:
+      - local-server
+    volumes:
+      - type: bind      
+        source: ./postgresql_data
+        target: /bitnami/postgresql
+    environment:
+      - 'POSTGRESQL_USERNAME=liodbuser'
+      - 'POSTGRESQL_PASSWORD=edcrdx_!YHB'
+      - 'POSTGRESQL_POSTGRES_PASSWORD=#aqwesw_nhy98!'
+
+volumes:
+  postgresql_data:
+    driver: local
