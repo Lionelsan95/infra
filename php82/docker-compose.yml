@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+
+  php:
+    container_name: low_php82
+    build: .
+    volumes:
+      - ./projects.conf:/etc/apache2/sites-available/projects.conf
+      - ../web_projects:/var/www/
+      - /Users/germainlionelowonomessomo/.ssh:/root/.ssh
+      - ./enableConf.sh:/root/enableConf.sh
+    extra_hosts:
+      - "blog-oc.app.${HOST_URL}:127.0.0.1"
+      - "sports.app.${HOST_URL}:127.0.0.1"
+    networks:
+      - traefik_net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik_net"
+      - "traefik.http.routers.low_php82.entrypoints=web"
+      - "traefik.http.routers.low_php82.rule=HostRegexp(`{subdomain:[a-z]+}.app.${HOST_URL}`) || HostRegexp(`{subdomain:[a-z]+}.${HOST_URL}`)"
+      - "traefik.http.services.low_php82.loadbalancer.server.port=80"
+
+networks:
+    traefik_net:
+        external: true

@@ -1,0 +1,2 @@
+a2ensite projects
+service apache reload

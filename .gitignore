@@ -1,2 +1,4 @@
-./postgresql/postgresql_data
-./mariadb/data
+postgresql/postgresql_data
+mariadb/data
+web_projects/*
+php82/projects.conf
